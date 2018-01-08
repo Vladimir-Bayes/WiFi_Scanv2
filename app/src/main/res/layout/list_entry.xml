@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/list_entry_apdding_bottom">
+
+    <TextView
+        android:id="@+id/Entry_Name_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="SSID(BSSID)"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="2.0dip">
+
+        <ImageView
+            android:id="@+id/Entry_Security_ImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nm_signal_100" />
+
+        <FrameLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="3.0" />
+
+        <TextView
+            android:id="@+id/Entry_Ch_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/labelChannel"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/Entry_Channel_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minWidth="@dimen/channelnumber_min_width"
+            android:text="999"
+            android:textColor="@color/channelNumber"
+            android:textSize="@dimen/text_size_medium" />
+
+        <FrameLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="3.0" />
+
+        <TextView
+            android:id="@+id/Entry_Frequence_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="1.0dip"
+            android:paddingRight="1.0dip"
+            android:text="2472 MHz"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_small" />
+
+        <FrameLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="5.0" />
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="100.0"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Entry_OUI_TextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.8"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right"
+                android:paddingBottom="1.0dip"
+                android:singleLine="true"
+                android:text="TP-LINK" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Entry_Strength_TextView"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:text="-100 dBm" />
+
+                <TextView
+                    android:id="@+id/Entry_AdHoc_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:paddingLeft="3.0dip"
+                    android:paddingRight="1.0dip"
+                    android:text="@string/labelAdHoc"
+                    android:textColor="@color/AdHoc"
+                    android:textSize="@dimen/text_size_small" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Entry_Capabilities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:paddingLeft="5.0dip"
+        android:singleLine="true"
+        android:text="[WPA-PSK-TKIP][WPA2-PSK-TKIP]"
+        android:textColor="@android:color/background_dark"
+        android:textSize="@dimen/text_size_small" />
+</LinearLayout>

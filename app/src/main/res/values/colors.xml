@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#273fd7</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <color name="channelNumber">#ff00ff00</color>
+    <color name="noItem">#50ffffff</color>
+    <color name="recommendation">#ffffff00</color>
+    <color name="noSignal">#ff8080</color>
+    <color name="yourAPNotSet">#ffff8080</color>
+    <color name="AdHoc">#ffff8080</color>
+    <color name="betterChannel">#ffffff00</color>
+    <color name="viewingSnapshotPrompt">#ffffff64</color>
+    <color name="graphBk">#ff252525</color>
+    <color name="listItemBackgroundSecondary">#ff1e1e1e</color>
+    <color name="channelGraphBackground">#10ffffff</color>
+    <color name="timeGraphBackground">#10ffffff</color>
+    <color name="dialogContentBackground">#6e000000</color>
+    <color name="view_snapshots_footer_background">@android:color/darker_gray</color>
+    <color name="devider_color">#39c0c0c0</color>
+    <color name="bg_pressed">#ccffbb33</color>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.karl.wifi_scanv2">
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".scanresult"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:label="Scan Results"
+            android:icon="@color/colorPrimary"
+            android:theme="@android:style/Widget.ListView"
+            >
+
+        </activity>
+        <activity
+            android:name=".OpenWiFi"
+            android:icon="@drawable/ic_launcher_background"
+            android:label="Open Wi-Fi"
+            >
+
+        </activity>
+        <activity
+            android:name=".showresult"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="Result of Scan"
+            android:icon="@drawable/ic_launcher_background"
+            >
+        </activity>
+    </application>
+
+</manifest>
