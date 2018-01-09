@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +16,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.karl.wifi_scanv2.SDCardHelper.getSDCardPrivateFilesDir;
+import static com.example.karl.wifi_scanv2.SDCardHelper.loadFileFromSDCard;
 
 
 /**
@@ -102,12 +108,14 @@ public class scanresult extends Activity {
             }
         });
 
+
+
         //Button Save
         Button button_save = (Button)findViewById(R.id.button_save);
         button_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd   hh:mm:ss");
+                SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String date = sDateFormat.format(new java.util.Date());
                 String filename =date+".txt";
                 String filecontent = date+"\r\n";
@@ -122,7 +130,69 @@ public class scanresult extends Activity {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "数据写入失败", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
 
+        //Button Open
+        //用于做测试
+        Button button_open = (Button)findViewById(R.id.button_open);
+        button_open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText edittext = (EditText)findViewById(R.id.edit_text_1);
+                String filename = edittext.getText().toString();
+                TextView textview = (TextView)findViewById(R.id.textview_input_echo);
+                textview.setText(filename);
+
+                try {
+                    String string = getSDCardPrivateFilesDir(scanresult.this,null);
+                    System.out.println("*************************");
+                    System.out.println(string);
+                    System.out.println("*************************");
+                    byte[] temp = loadFileFromSDCard(string+File.separator+filename);
+                    string = new String(temp);
+                    System.out.println("*************************");
+                    System.out.println(string);
+                    System.out.println("*************************");
+                    Intent intent = new Intent(scanresult.this,showresult.class);
+                    intent.putExtra("Check_result",string);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        //Button upload
+        //用socket来完成文件上传
+        Button button_upload = (Button)findViewById(R.id.button_upload);
+        button_upload.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                new Thread(){
+                    @Override
+                    public void run(){
+                        try{
+
+                            try{
+                                String filedir = getSDCardPrivateFilesDir(scanresult.this,null);
+                                System.out.println("*************************");
+                                System.out.println(filedir);
+                                System.out.println("*************************");
+                                filedir = filedir+File.separator+"123.txt";
+                                System.out.println(filedir);
+                                System.out.println("*************************");
+                                FileUpload.fileupload(filedir);
+                            } catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }}.start();
             }
         });
 
@@ -308,6 +378,30 @@ public class scanresult extends Activity {
         RSSI.clear();
         CAP.clear();
         Channel.clear();
+    }
+
+    public String readFromSD(String filename) throws IOException {
+        StringBuilder sb = new StringBuilder("");
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            filename = Environment.getExternalStorageDirectory().getCanonicalPath() + File.separator + filename;
+
+            System.out.println("****************************");
+            System.out.println(filename);
+            System.out.println("****************************");
+
+
+            //打开文件输入流
+            FileInputStream input = new FileInputStream(filename);
+            byte[] temp = new byte[1024];
+            int len = 0;
+            //读取文件内容:
+            while ((len = input.read(temp)) > 0) {
+                sb.append(new String(temp, 0, len));
+            }
+            //关闭输入流
+            input.close();
+        }
+        return sb.toString();
     }
 
 }
